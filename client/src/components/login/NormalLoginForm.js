@@ -18,6 +18,7 @@ const NormalLoginForm = Form.create()(React.createClass({
     return (
       <Form onSubmit={this.handleSubmit} className="login-form">
         <QueueAnim duration={1000} type='bottom' interval={0}>
+        <h1 key='0' style={{margin:"20px auto",textAlign:"center"}}>管理员登录</h1>
         <FormItem key="1">
           {getFieldDecorator('userName', {
             rules: [{ required: true, message: '请输入您的用户名!' }],
@@ -37,13 +38,12 @@ const NormalLoginForm = Form.create()(React.createClass({
             valuePropName: 'checked',
             initialValue: true,
           })(
-            <Checkbox>Remember me</Checkbox>
+            <Checkbox>记住密码</Checkbox>
           )}
-          <a className="login-form-forgot">Forgot password</a>
+          <a className="login-form-forgot">员工登录入口</a>
           <Button type="primary" htmlType="submit" className="login-form-button">
             登 录
           </Button>
-          Or <a>register now!</a>
         </FormItem>
         </QueueAnim>
       </Form>
