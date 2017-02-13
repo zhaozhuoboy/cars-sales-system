@@ -1,18 +1,14 @@
 import React from 'react';
-
-import QueueAnim from 'rc-queue-anim';
-import NormalLoginForm from './components/login/NormalLoginForm'
+//admin 后台管理界面
+import Header from './share/header/Header';
 
 
 class App extends React.Component {
 
   render () {
     return(
-      <div style={{width:"50%",margin:"100px auto 0"}}>
-
-          <NormalLoginForm />
-
-
+      <div>
+        <Header />
       </div>
     )
   }
