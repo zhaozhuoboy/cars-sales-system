@@ -1,0 +1,8 @@
+.clearfix:before,.clearfix:after{
+    content:"";
+    display:block;
+}
+.clearfix:after{clear:both;}
+.clearfix{
+    *zoom:1;/*IE/7/6*/
+}

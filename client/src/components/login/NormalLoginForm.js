@@ -17,6 +17,7 @@ const NormalLoginForm = Form.create()(React.createClass({
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
+      <div style={{paddingTop:"140px"}}>
       <Form onSubmit={this.handleSubmit} className="login-form">
         <QueueAnim duration={1000} type='bottom' interval={0}>
         <h1 key='0' style={{margin:"20px auto",textAlign:"center"}}>管理员登录</h1>
@@ -48,6 +49,7 @@ const NormalLoginForm = Form.create()(React.createClass({
         </FormItem>
         </QueueAnim>
       </Form>
+      </div>
     );
   },
 }));

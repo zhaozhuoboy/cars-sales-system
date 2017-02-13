@@ -3,7 +3,7 @@ import Form from './Form';
 class StaffLogin extends React.Component {
   render () {
     return(
-      <div>
+      <div style={{paddingTop:"140px"}}>
         <Form />
       </div>
     )
