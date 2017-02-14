@@ -4,14 +4,18 @@ import { Link } from 'react-router';
 const FormItem = Form.Item;
 import './index.css';
 import QueueAnim from 'rc-queue-anim';
+import { browserHistory } from 'react-router';
 
 const NormalLoginForm = Form.create()(React.createClass({
   handleSubmit(e) {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
-      if (!err) {
-        console.log('Received values of form: ', values);
+      //把values  post传到后台，后台从数据库检索 对应正确之后返回信息  登录成功
+      if(1>0){
+
+        browserHistory.push('/user/admin')
       }
+
     });
   },
   render() {
