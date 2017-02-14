@@ -1,3 +1,5 @@
+html{position: relative;height: 100%;}
+body{position: absolute;left: 0;top:0;height: 100%;overflow: hidden;}
 .clearfix:before,.clearfix:after{
     content:"";
     display:block;
@@ -5,4 +7,20 @@
 .clearfix:after{clear:both;}
 .clearfix{
     *zoom:1;/*IE/7/6*/
+}
+.main-container{
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+}
+.left-nav{
+  width: 20%;
+  flex-shrink:0;
+}
+.right-content{
+  margin-left: 10px;
+  width: 100%;
+  border:1px solid red;
+  overflow-y: scroll;
+  padding:10px;
 }
