@@ -1,20 +1,33 @@
 import React from 'react'
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import { Link } from 'react-router';
-const FormItem = Form.Item;
 import './index.css';
 import QueueAnim from 'rc-queue-anim';
 import { browserHistory } from 'react-router';
+import axios from 'axios';
+import SiteConfig from '../../config';
 
+const FormItem = Form.Item;
 const NormalLoginForm = Form.create()(React.createClass({
   handleSubmit(e) {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       //把values  post传到后台，后台从数据库检索 对应正确之后返回信息  登录成功
-      if(1>0){
-
-        browserHistory.push('/user/admin')
-      }
+      // if(1>0){
+      //
+      //   browserHistory.push('/user/admin')
+      // }
+      console.log(SiteConfig);
+      axios.post(`${SiteConfig.host}/login`,values)
+           .then( (res)=>{
+              console.log(res);
+              if(res.data.msg){
+                sessionStorage.setItem('user',values.userName)
+                browserHistory.push('/user/admin')
+              }else{
+                alert(res.data.error)
+              }
+           } )
 
     });
   },

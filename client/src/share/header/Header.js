@@ -3,6 +3,20 @@ import { Link } from 'react-router';
 import QueueAnim from 'rc-queue-anim';
 import './header.css'
 class Header extends React.Component {
+  constructor(){
+   super()
+   this.state={
+     user:''
+   }
+ }
+  componentWillMount(){
+    if(sessionStorage.getItem('user')){
+      this.setState({
+        user:sessionStorage.getItem('user')
+      })
+    }
+  }
+
   render () {
     return(
       <QueueAnim duration={1000} type='top' interval={0}>
@@ -11,7 +25,7 @@ class Header extends React.Component {
           汽车销售后台管理系统
         </div>
         <div className='user'>
-          <p className='user-name'>admin</p>
+          <p className='user-name'>{this.state.user}</p>
           <Link to='/'> 退出登陆 </Link>
         </div>
       </div>
