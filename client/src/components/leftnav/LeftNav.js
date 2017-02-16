@@ -1,5 +1,6 @@
 import React from 'react';
 import { Menu, Icon } from 'antd';
+import { Link } from 'react-router';
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 import QueueAnim from 'rc-queue-anim';
@@ -26,7 +27,7 @@ const LeftNav = React.createClass({
         key='1'
       >
         <SubMenu key="sub1" title={<span><Icon type="mail" /><span>员工信息管理</span></span>}>
-            <Menu.Item key="1">查看所有员工</Menu.Item>
+            <Menu.Item key="1"><Link to='/all-yuangong'>查看所有员工</Link></Menu.Item>
             <Menu.Item key="2">添加员工信息</Menu.Item>
             <Menu.Item key="3">修改员工信息</Menu.Item>
         </SubMenu>

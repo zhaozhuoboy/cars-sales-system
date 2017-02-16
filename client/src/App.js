@@ -22,7 +22,7 @@ class App extends React.Component {
             <LeftNav />
           </div>
           <div className="right-content" key='1'>
-            { this.props.children }adfadsf
+            { this.props.children }
           </div>
         </div>
       </div>

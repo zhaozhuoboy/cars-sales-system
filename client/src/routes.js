@@ -5,6 +5,8 @@ import App from './App';//admin 管理界面
 import Staff from './Staff';//staff 职员后台界面
 import AdminLogin from './components/login/NormalLoginForm';
 import StaffLogin from './components/staffLogin/index';
+
+import AllYuanGong from './components/allYuanGong.js';
 class Rrouters extends React.Component {
   render () {
     return(
@@ -12,6 +14,7 @@ class Rrouters extends React.Component {
         <Route path='/' components={AdminLogin} />
         <Route path='/login/staff' components={StaffLogin} />
         <Route path='user/admin' component={App} >
+          <Route path='/all-yuangong' component={AllYuanGong}/>
 
         </Route>
         <Route path='user/staff' component={Staff} >

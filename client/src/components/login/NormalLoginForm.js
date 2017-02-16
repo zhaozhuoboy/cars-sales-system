@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 import './index.css';
 import QueueAnim from 'rc-queue-anim';
 import { browserHistory } from 'react-router';
+import {  notification } from 'antd';
 import axios from 'axios';
 import SiteConfig from '../../config';
 
@@ -23,9 +24,21 @@ const NormalLoginForm = Form.create()(React.createClass({
               console.log(res);
               if(res.data.msg){
                 sessionStorage.setItem('user',values.userName)
-                browserHistory.push('/user/admin')
+                browserHistory.push('/user/admin');
+                const args = {
+                  message: '登录成功',
+                  description:`欢迎您,${values.userName}`,
+                  duration:3
+                };
+                notification.success(args);
               }else{
-                alert(res.data.error)
+                //alert(res.data.error)
+                const args = {
+                  message: '提示：',
+                  description: res.data.error,
+                  duration:3
+                };
+                notification.warning(args);
               }
            } )
 

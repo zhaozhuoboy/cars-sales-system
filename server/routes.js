@@ -10,7 +10,7 @@ module.exports = function(app){
   app.post('/login',function(req,res){
     //User.findOne({userName:req.body.userName});
     //req.body.userName=='admin' && req.body.password =='admin'
-    if(1>0){
+    if(req.body.userName=='zhaozhuo' && req.body.password =='zhaozhuo'){
       res.json({msg:'success'})
     }else{
       res.json({error:'用户名或密码错误！'})
