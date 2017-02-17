@@ -4,7 +4,8 @@ var Schema = mongoose.Schema;
 var UserSchema = new Schema(
   {
     userName: String,
-    password: String
+    password: String,
+    isManager: String
   },
   {
     timestamps: true

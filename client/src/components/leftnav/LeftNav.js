@@ -28,7 +28,6 @@ const LeftNav = React.createClass({
       >
         <SubMenu key="sub1" title={<span><Icon type="mail" /><span>员工信息管理</span></span>}>
             <Menu.Item key="1"><Link to='/all-yuangong'>查看所有员工</Link></Menu.Item>
-            <Menu.Item key="2">添加员工信息</Menu.Item>
             <Menu.Item key="3">修改员工信息</Menu.Item>
         </SubMenu>
         <SubMenu key="sub2" title={<span><Icon type="appstore" /><span>汽车信息管理</span></span>}>

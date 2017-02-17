@@ -21,13 +21,42 @@ db.once('open', function() {
   console.log('数据库连接成功！!')
 });
 
+//登录api
+app.post('/login',function(req,res){
+  User.findOne({userName:req.body.userName},function(err,document){
+    console.log(document);
+    if(req.body.password == document.password){
+      if(document.isManager == 'y'){
+        res.json({isManager:'y',msg:'success'});
+      }else{
+        res.json({isManager:'n',msg:'success'})
+      }
+    }else{
+      res.json({error:'用户名或密码错误！'});
+    }
+  })
+})
 
-
-
+//添加新员工
+app.post('/addyuangong',function(req,res){
+  var user = new User({
+    name:req.body.name,
+    userName:req.body.userName,
+    password:req.body.password,
+    isManager:req.body.isManager
+  })
+  user.save(function(err){
+    if(err){
+      return err;
+    }else{
+      res.json({msg:"success save"})
+    }
+  })
+})
 
 //导入路由规则
-var routes = require('./routes');
-routes(app);
+// var routes = require('./routes');
+// routes(app);
 
 //服务器监听3000端口
 app.listen(3000, function() {

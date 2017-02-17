@@ -18,21 +18,30 @@ const NormalLoginForm = Form.create()(React.createClass({
       //
       //   browserHistory.push('/user/admin')
       // }
-      console.log(SiteConfig);
+      // console.log(SiteConfig);
       axios.post(`${SiteConfig.host}/login`,values)
            .then( (res)=>{
               console.log(res);
               if(res.data.msg){
                 sessionStorage.setItem('user',values.userName)
-                browserHistory.push('/user/admin');
-                const args = {
-                  message: '登录成功',
-                  description:`欢迎您,${values.userName}`,
-                  duration:3
-                };
-                notification.success(args);
+                if(res.data.isManager == 'y'){
+                  browserHistory.push('/user/admin');
+                  const args = {
+                    message: '登录成功',
+                    description:`欢迎您,${values.userName}`,
+                    duration:3
+                  };
+                  notification.success(args);
+                }else{
+                  browserHistory.push('/user/staff');
+                  const args = {
+                    message: '登录成功',
+                    description:`欢迎您,${values.userName}`,
+                    duration:3
+                  };
+                  notification.success(args);
+                }
               }else{
-                //alert(res.data.error)
                 const args = {
                   message: '提示：',
                   description: res.data.error,
@@ -50,7 +59,7 @@ const NormalLoginForm = Form.create()(React.createClass({
       <div style={{paddingTop:"140px"}}>
       <Form onSubmit={this.handleSubmit} className="login-form">
         <QueueAnim duration={1000} type='bottom' interval={0}>
-        <h1 key='0' style={{margin:"20px auto",textAlign:"center"}}>管理员登录</h1>
+        <h1 key='0' style={{margin:"20px auto",textAlign:"center"}}>后台管理系统</h1>
         <FormItem key="1">
           {getFieldDecorator('userName', {
             rules: [{ required: true, message: '请输入您的用户名!' }],
