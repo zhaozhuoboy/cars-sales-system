@@ -22,7 +22,7 @@ npm start
 
 全局安装 nodemon 用于启动后台服务 修改代码后不用重新 运行index.js
 ```
-npm install -g nodemong
+npm install -g nodemon
 
 ```
 新建数据库存放目录
