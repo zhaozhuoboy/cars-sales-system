@@ -7,14 +7,22 @@ import AdminLogin from './components/login/NormalLoginForm';
 import StaffLogin from './components/staffLogin/index';
 
 import AllYuanGong from './components/allYuanGong.js';
+import EditYuanGong from './components/editYuanGong.js';
+
+import AllCars from './components/allCars';
+import AddCars from './components/addCars';
+import EditCars from './components/editCars';
 class Rrouters extends React.Component {
   render () {
     return(
       <Router history={browserHistory}>
         <Route path='/' components={AdminLogin} />
-        <Route path='/login/staff' components={StaffLogin} />
         <Route path='user/admin' component={App} >
           <Route path='/all-yuangong' component={AllYuanGong}/>
+          <Route path='/edit-yuangong' component={EditYuanGong}/>
+          <Route path='/all-cars' component={AllCars}/>
+          <Route path='/add-cars' component={AddCars}/>
+          <Route path='/edit-cars' component={EditCars}/>
 
         </Route>
         <Route path='user/staff' component={Staff} >

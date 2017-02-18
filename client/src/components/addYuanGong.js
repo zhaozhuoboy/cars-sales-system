@@ -21,19 +21,22 @@ const AddYuanGong = React.createClass({
   handleOk() {
     let newUser={
       name:this.refs.name.refs.input.value,
-      username:this.refs.username.refs.input.value,
+      userName:this.refs.username.refs.input.value,
       password:this.refs.password.refs.input.value,
       isManager:this.state.value
     }
     console.log(newUser);
     axios.post(`${SiteConfig.host}/addyuangong`,newUser)
          .then((res)=>{
-           console.log(res.data);
            if(res.data.msg){
-             this.setState({
-               visible: false,
-               confirmLoading: false,
-             })
+            setTimeout(() => {
+              this.setState({
+                visible: false,
+                confirmLoading: false,
+              });
+              this.props.loadnew();
+            }, 600);
+
            }
          })
     this.setState({
@@ -57,7 +60,7 @@ const AddYuanGong = React.createClass({
     return (
       <div style={{margin:"10px"}}>
         <Button type="primary" onClick={this.showModal}>添加员工</Button>
-        <Button style={{marginLeft:"20px"}}>刷新</Button>
+
         <Modal title="添加新员工"
           visible={this.state.visible}
           onOk={this.handleOk}

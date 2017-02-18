@@ -14,18 +14,14 @@ const NormalLoginForm = Form.create()(React.createClass({
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       //把values  post传到后台，后台从数据库检索 对应正确之后返回信息  登录成功
-      // if(1>0){
-      //
-      //   browserHistory.push('/user/admin')
-      // }
-      // console.log(SiteConfig);
+      console.log(values);
       axios.post(`${SiteConfig.host}/login`,values)
            .then( (res)=>{
-              console.log(res);
+             console.log(res);
               if(res.data.msg){
                 sessionStorage.setItem('user',values.userName)
                 if(res.data.isManager == 'y'){
-                  browserHistory.push('/user/admin');
+                  browserHistory.push('/all-yuangong');
                   const args = {
                     message: '登录成功',
                     description:`欢迎您,${values.userName}`,

@@ -23,17 +23,19 @@ db.once('open', function() {
 
 //登录api
 app.post('/login',function(req,res){
+  console.log(req.body);
   User.findOne({userName:req.body.userName},function(err,document){
-    console.log(document);
-    if(req.body.password == document.password){
-      if(document.isManager == 'y'){
-        res.json({isManager:'y',msg:'success'});
+      console.log(err);
+      if(req.body.password == document.password){
+        if(document.isManager == 'y'){
+          res.json({isManager:'y',msg:'success'});
+        }else{
+          res.json({isManager:'n',msg:'success'})
+        }
       }else{
-        res.json({isManager:'n',msg:'success'})
+        res.json({error:'用户名或密码错误！'});
       }
-    }else{
-      res.json({error:'用户名或密码错误！'});
-    }
+
   })
 })
 
@@ -53,7 +55,25 @@ app.post('/addyuangong',function(req,res){
     }
   })
 })
+//获取所有员工信息
+app.get('/getall',function(req,res){
+  User.find(function(err,users){
+    res.json({users:users})
+  })
+})
+//修改员工信息
+app.post('/edityuangong',function(req,res){
+  //查找 然后修改 保存
+})
 
+//删除员工信息
+app.post('/delyuangong',function(req,res){
+  User.findOne({userName:req.body.userName},function(err,doc){
+    doc.remove(function(err){
+      res.send('deled')
+    })
+  })
+})
 //导入路由规则
 // var routes = require('./routes');
 // routes(app);

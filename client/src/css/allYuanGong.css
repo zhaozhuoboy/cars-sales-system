@@ -1,0 +1,27 @@
+.all-header{
+  text-align: left;
+  width:96%;
+  margin:0 auto;
+  font-size: 18px;
+  max-height:430px;
+  overflow-y: scroll;
+}
+.all-header li span{
+  display: inline-block;
+  margin-left: 10px;
+  text-indent: 10px;
+}
+.all-header li .ant-btn span{margin: 0;}
+.all-header li span.name{
+  width:20%;
+}
+.all-header li span.username{
+  width:20%;
+}
+.all-header li span.ismanager{
+  width:20%;
+  text-align: center;
+}
+.all-header li span.caozuo{
+  width:20%;
+}
