@@ -1,10 +1,9 @@
 import React from 'react'
-import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import { Form, Icon, Input, Button, Checkbox ,notification} from 'antd';
 import { Link } from 'react-router';
 import './index.css';
 import QueueAnim from 'rc-queue-anim';
 import { browserHistory } from 'react-router';
-import {  notification } from 'antd';
 import axios from 'axios';
 import SiteConfig from '../../config';
 

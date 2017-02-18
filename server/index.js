@@ -23,9 +23,7 @@ db.once('open', function() {
 
 //登录api
 app.post('/login',function(req,res){
-  console.log(req.body);
   User.findOne({userName:req.body.userName},function(err,document){
-      console.log(err);
       if(req.body.password == document.password){
         if(document.isManager == 'y'){
           res.json({isManager:'y',msg:'success'});
@@ -61,9 +59,26 @@ app.get('/getall',function(req,res){
     res.json({users:users})
   })
 })
-//修改员工信息
-app.post('/edityuangong',function(req,res){
+//修改员工信息  先请求得到要求改的员工信息
+app.post('/getyuangong',function(req,res){
+
+  User.findOne({userName:req.body.userName},function(err,doc){
+    res.json(doc)
+  })
+})
+
+app.put('/edityuangong',function(req,res){
   //查找 然后修改 保存
+  User.findById({_id: req.body._id},function(err, doc){
+    for (prop in req.body) {
+      doc[prop] = req.body[prop];
+    }
+    doc.save(function(err){
+      if (err) return res.status(500).json({error: err.message});
+      res.json({msg: '修改成功啦！'});
+    })
+
+  })
 })
 
 //删除员工信息

@@ -19,3 +19,26 @@ npm start
 
 ---
 ### 后端搭建
+
+全局安装 nodemon 用于启动后台服务 修改代码后不用重新 运行index.js
+```
+npm install -g nodemong
+
+```
+新建数据库存放目录
+```
+cd server && mkdir data
+cd data && mkdir db
+
+```
+
+返回 server目录 启动mongodb数据库服务
+```
+mongod --dbpath=./data/db
+
+```
+启动后台主文件
+```
+nodemon index.js
+
+```
