@@ -14,37 +14,47 @@ const NormalLoginForm = Form.create()(React.createClass({
     this.props.form.validateFields((err, values) => {
       //把values  post传到后台，后台从数据库检索 对应正确之后返回信息  登录成功
       console.log(values);
-      axios.post(`${SiteConfig.host}/login`,values)
-           .then( (res)=>{
-             console.log(res);
-              if(res.data.msg){
-                sessionStorage.setItem('user',values.userName)
-                if(res.data.isManager == 'y'){
-                  browserHistory.push('/all-yuangong');
-                  const args = {
-                    message: '登录成功',
-                    description:`欢迎您,${values.userName}`,
-                    duration:3
-                  };
-                  notification.success(args);
-                }else{
-                  browserHistory.push('/user/staff');
-                  const args = {
-                    message: '登录成功',
-                    description:`欢迎您,${values.userName}`,
-                    duration:3
-                  };
-                  notification.success(args);
-                }
-              }else{
-                const args = {
-                  message: '提示：',
-                  description: res.data.error,
-                  duration:3
-                };
-                notification.warning(args);
-              }
-           } )
+        if(values.userName != undefined && values.password != undefined){
+          axios.post(`${SiteConfig.host}/login`,values)
+               .then( (res)=>{
+                 console.log(res);
+                  if(res.data.msg){
+                    sessionStorage.setItem('user',values.userName)
+                    if(res.data.isManager == 'y'){
+                      browserHistory.push('/all-yuangong');
+                      const args = {
+                        message: '登录成功',
+                        description:`欢迎您,${values.userName}`,
+                        duration:3
+                      };
+                      notification.success(args);
+                    }else{
+                      browserHistory.push('/user/staff');
+                      const args = {
+                        message: '登录成功',
+                        description:`欢迎您,${values.userName}`,
+                        duration:3
+                      };
+                      notification.success(args);
+                    }
+                  }else{
+                    const args = {
+                      message: '提示：',
+                      description: res.data.error,
+                      duration:3
+                    };
+                    notification.warning(args);
+                  }
+               } )
+        }else{
+          const args = {
+            message: '提示：',
+            description: '用户名或密码不能为空！',
+            duration:1.8
+          };
+          notification.warning(args);
+        }
+
 
     });
   },
@@ -59,14 +69,14 @@ const NormalLoginForm = Form.create()(React.createClass({
           {getFieldDecorator('userName', {
             rules: [{ required: true, message: '请输入您的用户名!' }],
           })(
-            <Input placeholder="用户名" />
+            <Input addonBefore={<Icon type="user" />} placeholder="用户名" />
           )}
         </FormItem>
         <FormItem key="2">
           {getFieldDecorator('password', {
             rules: [{ required: true, message: '请输入您的密码!' }],
           })(
-            <Input type="password" placeholder="密 码" />
+            <Input addonBefore={<Icon type="lock" />} type="password" placeholder="密 码" />
           )}
         </FormItem>
         <FormItem key="3">
@@ -74,9 +84,8 @@ const NormalLoginForm = Form.create()(React.createClass({
             valuePropName: 'checked',
             initialValue: true,
           })(
-            <Checkbox>记住密码</Checkbox>
+            <Checkbox style={{float:"right",marginBottom:"6px"}}>记住密码</Checkbox>
           )}
-          <Link className="login-form-forgot" to='login/staff'>员工登录入口</Link>
           <Button type="primary" htmlType="submit" className="login-form-button">
             登 录
           </Button>

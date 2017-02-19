@@ -24,14 +24,18 @@ db.once('open', function() {
 //登录api
 app.post('/login',function(req,res){
   User.findOne({userName:req.body.userName},function(err,document){
-      if(req.body.password == document.password){
-        if(document.isManager == 'y'){
-          res.json({isManager:'y',msg:'success'});
+      try{
+        if(req.body.password == document.password){
+          if(document.isManager == 'y'){
+            res.json({isManager:'y',msg:'success'});
+          }else{
+            res.json({isManager:'n',msg:'success'})
+          }
         }else{
-          res.json({isManager:'n',msg:'success'})
+          res.json({error:'用户名或密码错误！'});
         }
-      }else{
-        res.json({error:'用户名或密码错误！'});
+      }catch(err){
+        res.json({error:'用户名不存在！'});
       }
 
   })
