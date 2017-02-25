@@ -34,7 +34,7 @@ const AddYuanGong = React.createClass({
                 visible: false,
                 confirmLoading: false,
               });
-              this.props.loadnew();
+              this.props.loadnew();//添加完成后  调用 componentWillMount 重新获取数据
             }, 600);
 
            }

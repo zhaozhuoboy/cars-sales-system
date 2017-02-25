@@ -39,7 +39,7 @@ class AllYuanGong extends React.Component {
     axios.post(`${SiteConfig.host}/delyuangong`,{userName:username})
          .then((res)=>{
            console.log(res);
-           if(res.status ==200){
+           if(res.status == 200){
              const args = {
                message: '提示：',
                description:"删除成功!",

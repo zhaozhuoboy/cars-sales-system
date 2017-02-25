@@ -14,6 +14,7 @@ mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017/cars-sales-system');
 
 var User = require('./models/user');//user表的结构
+var Cars = require('./models/cars');
 //连接数据库
 var db = mongoose.connection;
 db.on('error', console.log);
@@ -93,10 +94,35 @@ app.post('/delyuangong',function(req,res){
     })
   })
 })
-//导入路由规则
-// var routes = require('./routes');
-// routes(app);
-
+//添加汽车信息
+app.post('/addcar',function(req,res){
+  var car = new Cars(req.body);
+  car.save(function(err){
+    try{
+      res.json({msg:"save success"})
+    }catch(err){
+      res.json({err:"保存失败"})
+    }
+  })
+})
+//获取所有汽车
+app.get('/getallcars',function(req,res){
+  Cars.find(function(err,doc){
+    try{
+      res.json({cars:doc})
+    }catch(err){
+      res.json({error:"查找失败"})
+    }
+  })
+})
+//删除汽车
+app.delete('/delcar/:_id',function (req, res) {
+  var _id = req.params._id;
+  Cars.findByIdAndRemove(_id,function (err) {
+    if (err) {return console.log(err)};
+    res.json({msg:'success'})
+  })
+});
 //服务器监听3000端口
 app.listen(3000, function() {
   console.log('running on port 3000')

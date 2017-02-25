@@ -4,13 +4,13 @@ import { Router , Route,browserHistory,IndexRoute} from 'react-router'
 import App from './App';//admin 管理界面
 import Staff from './Staff';//staff 职员后台界面
 import AdminLogin from './components/login/NormalLoginForm';
-import StaffLogin from './components/staffLogin/index';
+//import StaffLogin from './components/staffLogin/index';
 
 import AllYuanGong from './components/allYuanGong.js';
 import EditYuanGong from './components/editYuanGong.js';
 
 import AllCars from './components/allCars';
-import AddCars from './components/addCars';
+//import AddCars from './components/addCars';
 import EditCars from './components/editCars';
 class Rrouters extends React.Component {
   render () {
@@ -20,8 +20,8 @@ class Rrouters extends React.Component {
         <Route path='user/admin' component={App} >
           <Route path='/all-yuangong' component={AllYuanGong}/>
           <Route path='/edit-yuangong' component={EditYuanGong}/>
+          
           <Route path='/all-cars' component={AllCars}/>
-          <Route path='/add-cars' component={AddCars}/>
           <Route path='/edit-cars' component={EditCars}/>
 
         </Route>
