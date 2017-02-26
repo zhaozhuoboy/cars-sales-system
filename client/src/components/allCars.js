@@ -1,26 +1,37 @@
 import React, { PropTypes } from 'react'
 import AddCar from './qicheguanli/addCar'
 import CarItem from './qicheguanli/carItem'
-import axios from 'axios'
-import { notification } from 'antd'
-import SiteConfig from '../config'
+import axios from 'axios';
+import isEmpty from 'lodash/fp/isEmpty';
+import { notification ,Pagination ,Table, Icon  } from 'antd'
+import SiteConfig from '../config';
+
 class AllCars extends React.Component {
   constructor(){
     super()
     this.state={
-      allCarData:[],
-      loadData:true
+      allCarData:[],//所有的数据
+      loadData:true,
+      pageSize:10,//显示几条
+      pageNum:1
     }
   }
+  onChange(page){
+    this.setState({
+      pageNum: page
+    });
+  }
+//分页功能，初始化时 将 第1页  1  和显示条数  10  提交到后台，
+//后台查询  跳过 1*10-10 之后的10条 skip(pageNum*pageSize-pageSize).limit(10)
   componentWillMount(){
     axios.get(`${SiteConfig.host}/getallcars`)
          .then((res)=>{
-           console.log(res.data);
            this.setState({
              allCarData:res.data.cars,
-             loadData:false
+             loadData:false,
            });
          })
+
   }
   del(car_id){
     axios.delete(`${SiteConfig.host}/delcar/${car_id}`)
@@ -38,7 +49,7 @@ class AllCars extends React.Component {
          })
   }
   render () {
-    const allcars = this.state.allCarData.map( (item , i) => <CarItem
+    var allcars = this.state.allCarData.map( (item , i) => <CarItem
     key={item._id}
     id={item._id}
     name={item.name}
@@ -66,6 +77,10 @@ class AllCars extends React.Component {
             </tbody>
           </table>
         </div>
+        <Pagination current={this.state.current}
+            defaultCurrent={1}
+           onChange={this.onChange.bind(this)} total={this.state.allCarData.length} />
+
       </div>
     )
   }
