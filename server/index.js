@@ -106,14 +106,25 @@ app.post('/addcar',function(req,res){
   })
 })
 //获取所有汽车
-app.get('/getallcars',function(req,res){
+app.post('/getallcars',function(req,res){
+  console.log(req.body);
+  const pageNum = req.body.pageNum;
+  const pageSize = req.body.pageSize;
   Cars.find(function(err,doc){
+    //console.log(doc);
     try{
-      res.json({cars:doc})
+      res.json({cars:doc,tiaoshu:40})
     }catch(err){
       res.json({error:"查找失败"})
     }
-  })
+  }).skip(pageNum*pageSize-pageSize).limit(pageSize);
+  // Cars.find(function(err,doc){
+  //   try{
+  //     res.json({cars:doc})
+  //   }catch(err){
+  //     res.json({error:"查找失败"})
+  //   }
+  // })
 })
 //删除汽车
 app.delete('/delcar/:_id',function (req, res) {
