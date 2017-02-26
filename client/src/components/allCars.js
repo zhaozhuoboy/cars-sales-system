@@ -13,7 +13,7 @@ class AllCars extends React.Component {
       tiaoshu:0,//所有的数据
       allCarData:[],
       loadData:true,
-      pageSize:12,//显示几条
+      pageSize:10,//显示几条
       current:1
     }
   }
@@ -35,13 +35,6 @@ class AllCars extends React.Component {
 //分页功能，初始化时 将 第1页  1  和显示条数  10  提交到后台，
 //后台查询  跳过 1*10-10 之后的10条 skip(pageNum*pageSize-pageSize).limit(10)
   componentWillMount(){
-    // axios.get(`${SiteConfig.host}/getallcars`)
-    //      .then((res)=>{
-    //        this.setState({
-    //          allCarData:res.data.cars,
-    //          loadData:false,
-    //        });
-    //      })
     axios.post(`${SiteConfig.host}/getallcars`,{
       pageNum:this.state.current,
       pageSize:this.state.pageSize
@@ -83,24 +76,25 @@ class AllCars extends React.Component {
       <div>
         <AddCar loadnew={this.componentWillMount.bind(this)}/>
         <div className='all-cars-container' style={{position:"relative"}}>
-          <table style={{width:"100%"}}>
+          <table style={{width:"100%",borderSpacing: '0',
+    borderCollapse: 'collapse'}}>
             <thead>
               <tr style={{fontSize:"16px",background:"#eee"}}>
-                <th style={{width:"200px"}}>汽车名称</th>
-                <th style={{width:"100px"}}>库存</th>
-                <th style={{width:"200px"}}>价格</th>
-                <th style={{width:"200px"}}>负责人</th>
+                <th style={{width:"200px", padding: '8px'}}>汽车名称</th>
+                <th style={{width:"100px",padding: '8px'}}>库存</th>
+                <th style={{width:"200px",padding: '8px'}}>价格</th>
+                <th style={{width:"200px",padding: '8px'}}>负责人</th>
                 <th>操作</th>
               </tr>
             </thead>
             <tbody>
-              {this.state.loadData ? '暂无数据':allcars}
+              {this.state.loadData ? null :allcars}
             </tbody>
           </table>
         </div>
         {/*分页器*/}
         <Pagination
-          style={{position:"absolute",bottom:"10%",left:'40%'}}
+          style={{position:"absolute",bottom:"10%",right:'10%'}}
           current={this.state.current}
           defaultCurrent={1}
           showQuickJumper

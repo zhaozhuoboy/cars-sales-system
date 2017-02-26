@@ -24,3 +24,9 @@ body{position: absolute;left: 0;top:0;height: 100%;overflow: hidden;}
   padding:20px;
   background: #fff;
 }
+td{
+  padding:4px 0;
+}
+tr:nth-child(even){
+  background:#e6e6e6;
+}
