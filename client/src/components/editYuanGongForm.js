@@ -85,10 +85,6 @@ class EditYuanGongForm extends React.Component {
   }
   handleSubmit(e){
     e.preventDefault();
-    // const userName = this.refs.userName.value;
-    // const name = this.refs.name.value;
-    // const password = this.refs.password.value;
-    // const isManager = this.refs.isManager.value;
     const newxinxi ={
       _id:this.props.post._id,
       userName:this.refs.userName.value,

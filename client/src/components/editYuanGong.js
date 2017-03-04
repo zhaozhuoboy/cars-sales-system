@@ -27,7 +27,6 @@ class EditYuanGong extends React.Component {
   publishPost(data){
     axios.put(`${SiteConfig.host}/edityuangong`,data)
          .then((res)=>{
-           console.log(res.data);
            const args = {
              message: "提示：",
              description:res.data.msg,

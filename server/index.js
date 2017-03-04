@@ -136,6 +136,30 @@ app.delete('/delcar/:_id',function (req, res) {
     res.json({msg:'success'})
   })
 });
+
+//修改汽车
+  //拿到需要修改的汽车信息
+app.get('/getOneCar/:_id',function(req,res){
+  var _id =req.params._id;
+  Cars.findById(_id,function(err,doc){
+    if (err) {return console.log(err)};
+    res.json(doc);
+  })
+})
+//修改汽车
+app.put('/editcar/:_id',function(req,res){
+  var _id =req.params._id;
+  console.log(_id);
+  console.log(req.body);
+  Cars.findByIdAndUpdate(_id,req.body,function(err,doc){
+    if (err) {return console.log(err)};
+    res.json({msg: '修改成功啦！'});
+  })
+
+})
+
+
+
 //服务器监听3000端口
 app.listen(3000, function() {
   console.log('running on port 3000')

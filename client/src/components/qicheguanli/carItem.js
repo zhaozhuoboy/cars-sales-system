@@ -15,6 +15,10 @@ class CarItem extends React.Component {
     }
 
   }
+  edit(e){
+    sessionStorage.setItem('editCar_id',this.props.id);
+
+  }
   render () {
     return(
       <tr style={{fontSize:"16px",textAlign:"center",lineHeight:"1.5em"}}>
@@ -22,7 +26,7 @@ class CarItem extends React.Component {
         <td style={{width:"100px"}}>{this.props.carStock}</td>
         <td style={{width:"200px"}}>{this.props.carPrice}</td>
         <td style={{width:"200px"}}>{this.props.name}</td>
-        <td><Link to='/edit-cars'>修改</Link><Button style={{marginLeft:"20px"}} size="small" onClick={this.del.bind(this)}>删除</Button></td>
+        <td><Link to='/edit-cars' onClick={this.edit.bind(this)}>修改</Link><Button style={{marginLeft:"20px"}} size="small" onClick={this.del.bind(this)}>删除</Button></td>
       </tr>
     )
   }
