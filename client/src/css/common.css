@@ -24,10 +24,21 @@ body{position: absolute;left: 0;top:0;height: 100%;overflow: hidden;}
   padding:20px;
   background: #fff;
 }
+table{
+  border:1px solid #ddd;
+  border-radius: 5px;
+  border-spacing: 0;
+}
+th{
+  height: 29px;
+  background: #ddd;
+}
 td{
   padding:4px 0;
+  border-bottom: 1px solid #f1f1f1;
 }
-tr:nth-child(even){
-  background:#e6e6e6;
+tbody tr:last-child td{
+  border-bottom: none;
 }
+
 form a{color:#212121;}

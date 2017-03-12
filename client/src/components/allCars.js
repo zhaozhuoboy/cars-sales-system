@@ -76,8 +76,8 @@ class AllCars extends React.Component {
       <div>
         <AddCar loadnew={this.componentWillMount.bind(this)}/>
         <div className='all-cars-container' style={{position:"relative"}}>
-          <table style={{width:"100%",borderSpacing: '0',
-    borderCollapse: 'collapse'}}>
+          <table style={{width:"100%",
+    }}>
             <thead>
               <tr style={{fontSize:"16px",background:"#eee"}}>
                 <th style={{width:"200px", padding: '8px'}}>汽车名称</th>
