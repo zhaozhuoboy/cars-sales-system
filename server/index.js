@@ -14,7 +14,8 @@ mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost:27017/cars-sales-system');
 
 var User = require('./models/user');//user表的结构
-var Cars = require('./models/cars');
+var Cars = require('./models/cars');//汽车表
+var New = require('./models/news');//新闻表
 //连接数据库
 var db = mongoose.connection;
 db.on('error', console.log);
@@ -158,7 +159,15 @@ app.put('/editcar/:_id',function(req,res){
 
 })
 
-
+//新增一篇新闻
+app.post('/addnews',function(req,res){
+  console.log(req.body);
+  var news = new New(req.body);
+  news.save(function(err){
+    if (err) {return console.log(err)};
+    res.json({msg:"发布成功！"})
+  })
+})
 
 //服务器监听3000端口
 app.listen(3000, function() {

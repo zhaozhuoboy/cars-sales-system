@@ -12,6 +12,9 @@ import EditYuanGong from './components/editYuanGong.js';
 import AllCars from './components/allCars';
 //import AddCars from './components/addCars';
 import EditCars from './components/editCars';
+
+import PublishPicture from './components/PublishPicture';
+import PuslishNews from './components/PublishNews';
 class Rrouters extends React.Component {
   render () {
     return(
@@ -20,9 +23,12 @@ class Rrouters extends React.Component {
         <Route path='user/admin' component={App} >
           <Route path='/all-yuangong' component={AllYuanGong}/>
           <Route path='/edit-yuangong' component={EditYuanGong}/>
-          
+
           <Route path='/all-cars' component={AllCars}/>
           <Route path='/edit-cars' component={EditCars}/>
+
+          <Route path='/pic-publish' component={PublishPicture}/>
+          <Route path='/news-publish' component={PuslishNews}/>
 
         </Route>
         <Route path='user/staff' component={Staff} >

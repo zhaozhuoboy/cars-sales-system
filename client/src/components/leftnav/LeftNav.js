@@ -21,7 +21,8 @@ const LeftNav = React.createClass({
       current:this.context.router.isActive('/all-yuangong',true) ? "1":
               this.context.router.isActive('/all-cars') ? "2":
               this.context.router.isActive('/news-publish') ? "3":
-              this.context.router.isActive('/pic-publish') ? "4":''
+              this.context.router.isActive('/all-news') ? "4":
+              this.context.router.isActive('/pic-publish') ? "5":''
     })
   },
   componentWillMount(){
@@ -49,7 +50,8 @@ const LeftNav = React.createClass({
         </SubMenu>
         <SubMenu key="sub3" title={<span><Icon type="setting" /><span>新闻/图片发布</span></span>}>
           <Menu.Item key="3"><Link to='news-publish'>新闻发布</Link></Menu.Item>
-          <Menu.Item key="4"><Link to='pic-publish'>图片发布</Link></Menu.Item>
+          <Menu.Item key="4"><Link to='all-news'>新闻列表</Link></Menu.Item>
+          <Menu.Item key="5"><Link to='pic-publish'>图片发布</Link></Menu.Item>
 
         </SubMenu>
       </Menu>
