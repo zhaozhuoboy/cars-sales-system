@@ -4,7 +4,8 @@ var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.urlencoded({ extended: false }));
+var newsCtrl = require('./controllers/newsCtrl.js');
 
 // 关闭同源策略
 var cors = require('cors');
@@ -134,7 +135,7 @@ app.delete('/delcar/:_id',function (req, res) {
   var _id = req.params._id;
   Cars.findByIdAndRemove(_id,function (err) {
     if (err) {return console.log(err)};
-    res.json({msg:'success'})
+    res.json({msg:'删除成功'})
   })
 });
 
@@ -169,6 +170,9 @@ app.post('/addnews',function(req,res){
   })
 })
 
+//MVC 架构之后的API
+app.post('/getnews',newsCtrl.getNews);//获得新闻列表
+app.delete('/deleteNews/:_id',newsCtrl.deleteNews);//删除一篇新闻
 //服务器监听3000端口
 app.listen(3000, function() {
   console.log('running on port 3000')

@@ -15,6 +15,7 @@ import EditCars from './components/editCars';
 
 import PublishPicture from './components/PublishPicture';
 import PuslishNews from './components/PublishNews';
+import AllNews from './components/xinwenfabu/AllNews';
 class Rrouters extends React.Component {
   render () {
     return(
@@ -29,6 +30,7 @@ class Rrouters extends React.Component {
 
           <Route path='/pic-publish' component={PublishPicture}/>
           <Route path='/news-publish' component={PuslishNews}/>
+          <Route path='/all-news' component={AllNews}/>
 
         </Route>
         <Route path='user/staff' component={Staff} >

@@ -10,7 +10,7 @@ class AllCars extends React.Component {
   constructor(){
     super()
     this.state={
-      tiaoshu:0,//所有的数据
+      tiaoshu:0,//所有的数据条数
       allCarData:[],
       loadData:true,
       pageSize:10,//显示几条
@@ -75,7 +75,7 @@ class AllCars extends React.Component {
     return(
       <div>
         <AddCar loadnew={this.componentWillMount.bind(this)}/>
-        <div className='all-cars-container' style={{position:"relative"}}>
+        <div className='all-cars-container'>
           <table style={{width:"100%",
     }}>
             <thead>
@@ -91,14 +91,15 @@ class AllCars extends React.Component {
               {this.state.loadData ? null :allcars}
             </tbody>
           </table>
+          {/*分页器*/}
+          <Pagination
+            style={{float:"right",marginTop:"10px"}}
+            current={this.state.current}
+            defaultCurrent={1}
+            showQuickJumper
+            onChange={this.onChange.bind(this)} total={this.state.tiaoshu} />
         </div>
-        {/*分页器*/}
-        <Pagination
-          style={{position:"absolute",bottom:"10%",right:'10%'}}
-          current={this.state.current}
-          defaultCurrent={1}
-          showQuickJumper
-          onChange={this.onChange.bind(this)} total={this.state.tiaoshu} />
+
 
       </div>
     )
