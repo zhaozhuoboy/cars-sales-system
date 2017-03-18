@@ -75,7 +75,7 @@ class AllNews extends React.Component {
     }}>
             <thead>
               <tr style={{fontSize:"16px",background:"#eee"}}>
-                <th style={{width:"300px",padding: '8px',overflow:"hidden"}}>新闻标题</th>
+                <th style={{width:"500px",padding: '8px',overflow:"hidden"}}>新闻标题</th>
                 <th style={{width:"80px",padding: '8px'}}>发布人</th>
                 <th style={{padding: '8px'}}>发布时间</th>
                 <th>操作</th>
