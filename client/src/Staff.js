@@ -1,9 +1,27 @@
-import React, { PropTypes } from 'react'
+import React, { PropTypes } from 'react';
+import Header from './share/header/Header';
+import StaffLeftNav from './components/leftnav/StaffLeftNav';
 
 class Staff extends React.Component {
   render () {
+    let styles={
+      root:{
+        width:"100%",
+        height:"100vh"
+      }
+    }
     return(
-      <h2>职员后台页面</h2>
+      <div style={styles.root}>
+        <Header />
+        <div className="main-container">
+          <div className="left-nav">
+            <StaffLeftNav />
+          </div>
+          <div className="right-content" key='1'>
+            { this.props.children }
+          </div>
+        </div>
+      </div>
     )
   }
 }

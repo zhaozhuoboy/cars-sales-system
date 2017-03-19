@@ -60,6 +60,7 @@
   "dependencies": {
     "antd": "^2.6.1",
     "babel-plugin-import": "^1.1.0",
+    "html-to-draftjs": "0.1.0-beta7",
     "lodash": "^4.17.4",
     "radium": "^0.18.1",
     "rc-queue-anim": "^0.13.0",

@@ -173,6 +173,8 @@ app.post('/addnews',function(req,res){
 //MVC 架构之后的API
 app.post('/getnews',newsCtrl.getNews);//获得新闻列表
 app.delete('/deleteNews/:_id',newsCtrl.deleteNews);//删除一篇新闻
+app.get('/getOneNew/:_id',newsCtrl.getOneNew);//获取修改的新闻
+app.put('/updatenew/:_id',newsCtrl.updateNews);//修改一篇新闻
 //服务器监听3000端口
 app.listen(3000, function() {
   console.log('running on port 3000')

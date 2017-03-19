@@ -16,8 +16,7 @@ class NewItem extends React.Component {
 
   }
   edit(e){
-    sessionStorage.setItem('editCar_id',this.props.id);
-
+    sessionStorage.setItem('editNew_id',this.props.id);
   }
   render () {
     const str = this.props.createTime;

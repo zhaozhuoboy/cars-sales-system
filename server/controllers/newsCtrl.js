@@ -28,3 +28,20 @@ exports.deleteNews = function(req,res){
     res.json({msg:'删除成功'})
   })
 }
+exports.getOneNew = function(req,res){
+  var _id =req.params._id;
+  console.log(_id);
+  New.findById(_id,function(err,doc){
+    if (err) {return console.log(err)};
+    res.json(doc);
+  })
+}
+exports.updateNews = function(req,res){
+  var _id =req.params._id;
+  console.log(_id);
+  console.log(req.body);
+  New.findByIdAndUpdate(_id,req.body,function(err,doc){
+    if (err) {return console.log(err)};
+    res.json({msg: '修改成功啦！'});
+  })
+}
