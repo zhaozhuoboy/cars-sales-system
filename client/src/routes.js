@@ -3,6 +3,7 @@ import { Router , Route,browserHistory,IndexRoute} from 'react-router'
 
 import App from './App';//admin 管理界面
 import Staff from './Staff';//staff 职员后台界面
+import UserInfo from './components/UserInfo';
 import AdminLogin from './components/login/NormalLoginForm';
 //import StaffLogin from './components/staffLogin/index';
 
@@ -10,8 +11,8 @@ import AllYuanGong from './components/allYuanGong.js';
 import EditYuanGong from './components/editYuanGong.js';
 
 import AllCars from './components/allCars';
-//import AddCars from './components/addCars';
 import EditCars from './components/editCars';
+import StaffAllCars from './components/qicheguanli/staffAllCars';
 
 import PublishPicture from './components/PublishPicture';
 
@@ -37,7 +38,8 @@ class Rrouters extends React.Component {
 
         </Route>
         <Route path='user/staff' component={Staff} >
-          <Route path='/staff/all-cars' component={AllCars}/>
+          <Route path='/staff/info' component={UserInfo}/>
+          <Route path='/staff/all-cars' component={StaffAllCars}/>
           <Route path='/staff/edit-cars' component={EditCars}/>
 
           <Route path='/staff/pic-publish' component={PublishPicture}/>

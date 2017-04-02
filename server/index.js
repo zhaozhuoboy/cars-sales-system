@@ -30,9 +30,9 @@ app.post('/login',function(req,res){
       try{
         if(req.body.password == document.password){
           if(document.isManager == 'y'){
-            res.json({isManager:'y',msg:'success'});
+            res.json({isManager:'y',msg:'success',info:document});
           }else{
-            res.json({isManager:'n',msg:'success'})
+            res.json({isManager:'n',msg:'success',info:document})
           }
         }else{
           res.json({error:'用户名或密码错误！'});
@@ -151,24 +151,45 @@ app.get('/getOneCar/:_id',function(req,res){
 //修改汽车
 app.put('/editcar/:_id',function(req,res){
   var _id =req.params._id;
-  console.log(_id);
-  console.log(req.body);
   Cars.findByIdAndUpdate(_id,req.body,function(err,doc){
     if (err) {return console.log(err)};
     res.json({msg: '修改成功啦！'});
   })
 
 })
+//获取某个员工负责的汽车
+app.post('/getcars/:_username',function(req,res){
+  var username = req.params._username;
+  const pageNum = req.body.pageNum;
+  const pageSize = req.body.pageSize;
+  var count = 0;
+  Cars.count({userName:username},function(err,tiaoshu){
+    try{
+      count=tiaoshu;
+    }catch(err){
+      console.log(err);
+    }
+  });
+
+  Cars.find({userName:username}).skip(pageNum*pageSize-pageSize).limit(pageSize).exec(function(err,doc){
+    //console.log(doc);
+    try{
+      res.json({cars:doc,tiaoshu:count})
+    }catch(err){
+      res.json({error:"查找失败"})
+    }
+  })
+})
 
 //新增一篇新闻
 app.post('/addnews',function(req,res){
-  console.log(req.body);
   var news = new New(req.body);
   news.save(function(err){
     if (err) {return console.log(err)};
     res.json({msg:"发布成功！"})
   })
 })
+//get user info
 
 //MVC 架构之后的API
 app.post('/getnews',newsCtrl.getNews);//获得新闻列表

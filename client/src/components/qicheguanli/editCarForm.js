@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { Link } from 'react-router';
+import { Link,browserHistory } from 'react-router';
 import Radium from 'radium';
 import SiteConfig from '../../config';
 import isEmpty from 'lodash/fp/isEmpty';
@@ -112,20 +112,28 @@ class EditYuanGongForm extends React.Component {
      this.props.publishPost(newxinxi);
 
   }
-
+ goBack(){
+   let isManager = sessionStorage.getItem('isManager');
+   if(isManager == 'y'){
+     browserHistory.push('/all-cars');
+   }else{
+     browserHistory.push('/staff/all-cars');
+   }
+ }
   render () {
 
     const styles = this.getStyles();
+    const isManager = sessionStorage.getItem('isManager');
     return(
       <div>
         <form style={styles.form} onSubmit={this.handleSubmit.bind(this)}>
         <div style={styles.div}>
           <label style={styles.label}>姓名</label>
-          <input style={styles.input} ref='name' defaultValue={this.props.post ? this.props.post.name : ''}/>
+          <input disabled style={styles.input} ref='name' defaultValue={this.props.post ? this.props.post.name : ''}/>
         </div>
         <div style={styles.div}>
           <label style={styles.label}>用户名</label>
-          <input style={styles.input} ref='userName' defaultValue={this.props.post ? this.props.post.userName : ''}/>
+          <input disabled style={styles.input} ref='userName' defaultValue={this.props.post ? this.props.post.userName : ''}/>
         </div>
         <div style={styles.div}>
           <label style={styles.label}>汽车名</label>
@@ -156,7 +164,7 @@ class EditYuanGongForm extends React.Component {
         </div>
         <div style={styles.actions}>
           <button type='submit' style={styles.button} key='2'>更新</button>
-          <Link to='/all-cars' style={styles.link}>返回查看</Link>
+          <Link onClick={this.goBack.bind(this)} style={styles.link}>返回查看</Link>
         </div>
       </form>
       </div>

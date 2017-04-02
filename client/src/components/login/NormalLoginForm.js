@@ -13,13 +13,15 @@ const NormalLoginForm = Form.create()(React.createClass({
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       //把values  post传到后台，后台从数据库检索 对应正确之后返回信息  登录成功
-      console.log(values);
         if(values.userName != undefined && values.password != undefined){
           axios.post(`${SiteConfig.host}/login`,values)
                .then( (res)=>{
-                 console.log(res);
+                 console.log(res.data.info);
                   if(res.data.msg){
-                    sessionStorage.setItem('user',values.userName)
+                    sessionStorage.setItem('user',res.data.info.userName);
+                    sessionStorage.setItem('name',res.data.info.name);
+                    sessionStorage.setItem('isManager',res.data.info.isManager);
+                    sessionStorage.setItem('user_id',res.data.info._id);
                     if(res.data.isManager == 'y'){
                       browserHistory.push('/all-yuangong');
                       const args = {

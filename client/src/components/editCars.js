@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import EditCarForm from './qicheguanli/EditCarForm';
+import EditCarForm from './qicheguanli/editCarForm';
 import axios from 'axios';
 import SiteConfig from '../config';
 import isEmpty from 'lodash/fp/isEmpty';

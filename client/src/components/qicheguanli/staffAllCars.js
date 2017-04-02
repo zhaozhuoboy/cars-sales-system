@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react'
-import AddCar from './qicheguanli/addCar'
-import CarItem from './qicheguanli/carItem'
+import AddCar from './addCar'
+import CarItem from './carItem'
 import axios from 'axios';
 import isEmpty from 'lodash/fp/isEmpty';
 import { notification ,Pagination ,Table, Icon  } from 'antd'
-import SiteConfig from '../config';
+import SiteConfig from '../../config';
 
-class AllCars extends React.Component {
+class StaffAllCars extends React.Component {
   constructor(){
     super()
     this.state={
@@ -35,7 +35,8 @@ class AllCars extends React.Component {
 //分页功能，初始化时 将 第1页  1  和显示条数  10  提交到后台，
 //后台查询  跳过 1*10-10 之后的10条 skip(pageNum*pageSize-pageSize).limit(10)
   componentWillMount(){
-    axios.post(`${SiteConfig.host}/getallcars`,{
+    var username = sessionStorage.getItem('user');
+    axios.post(`${SiteConfig.host}/getcars/${username}`,{
       pageNum:this.state.current,
       pageSize:this.state.pageSize
     }).then((res)=>{
@@ -107,4 +108,4 @@ class AllCars extends React.Component {
   }
 }
 
-export default AllCars;
+export default StaffAllCars;
