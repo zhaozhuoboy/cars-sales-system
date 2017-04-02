@@ -190,7 +190,11 @@ app.post('/addnews',function(req,res){
   })
 })
 //get user info
-
+app.get('/getUserInfo/:_id',function(req,res){
+  User.findOne({_id:req.params._id},function(err,doc){
+    console.log(doc);
+  })
+})
 //MVC 架构之后的API
 app.post('/getnews',newsCtrl.getNews);//获得新闻列表
 app.delete('/deleteNews/:_id',newsCtrl.deleteNews);//删除一篇新闻
