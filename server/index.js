@@ -190,9 +190,10 @@ app.post('/addnews',function(req,res){
   })
 })
 //get user info
-app.get('/getUserInfo/:_id',function(req,res){
+app.get('/getuserinfo/:_id',function(req,res){
+  console.log(req.params._id);
   User.findOne({_id:req.params._id},function(err,doc){
-    console.log(doc);
+    res.status(200).json({msg:'success',info:doc})
   })
 })
 //MVC 架构之后的API
