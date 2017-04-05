@@ -10,6 +10,9 @@ var CarsSchema = new Schema(
     carPics:Array,
     carStock:String,//库存
     carDescription:String//汽车描述
+  },
+  {
+      timestamps: true
   }
 )
 

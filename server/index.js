@@ -120,7 +120,7 @@ app.post('/getallcars',function(req,res){
     }
   });
 
-  Cars.find({}).skip(pageNum*pageSize-pageSize).limit(pageSize).exec(function(err,doc){
+  Cars.find({}).sort({'_id':-1}).skip(pageNum*pageSize-pageSize).limit(pageSize).exec(function(err,doc){
     //console.log(doc);
     try{
       res.json({cars:doc,tiaoshu:count})
@@ -155,7 +155,6 @@ app.put('/editcar/:_id',function(req,res){
     if (err) {return console.log(err)};
     res.json({msg: '修改成功啦！'});
   })
-
 })
 //获取某个员工负责的汽车
 app.post('/getcars/:_username',function(req,res){
@@ -191,9 +190,17 @@ app.post('/addnews',function(req,res){
 })
 //get user info
 app.get('/getuserinfo/:_id',function(req,res){
-  console.log(req.params._id);
   User.findOne({_id:req.params._id},function(err,doc){
     res.status(200).json({msg:'success',info:doc})
+  })
+})
+//修改员工密码
+app.put('/staffinfo/:_id',function(req,res){
+  var _id =req.params._id;
+  console.log(req.body);
+  User.findByIdAndUpdate(_id,req.body,function(err,doc){
+    if (err) {return console.log(err)};
+    res.status(200).json({msg: '修改成功',doc});
   })
 })
 //MVC 架构之后的API
