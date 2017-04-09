@@ -203,11 +203,38 @@ app.put('/staffinfo/:_id',function(req,res){
     res.status(200).json({msg: '修改成功',doc});
   })
 })
+
 //MVC 架构之后的API
 app.post('/getnews',newsCtrl.getNews);//获得新闻列表
 app.delete('/deleteNews/:_id',newsCtrl.deleteNews);//删除一篇新闻
 app.get('/getOneNew/:_id',newsCtrl.getOneNew);//获取修改的新闻
 app.put('/updatenew/:_id',newsCtrl.updateNews);//修改一篇新闻
+
+//前端网站获取新闻列表
+app.get('/getnewslist',function(req,res){
+  New.find(function(err,docs){
+      if (err) {return console.log(err)};
+      res.status(200).json({
+        msg:'success',
+        list:docs
+      })
+  })
+})
+//前端网站获取某一篇新闻
+app.get('/getonenews/:_id',function(req,res){
+  var _id = req.params._id;
+  console.log(_id);
+  New.findById(_id,function(err,doc){
+    if(err) {return console.log(err)};
+    res.status(200).json({
+      msg:'success',
+      post: doc
+    })
+  })
+})
+
+
+
 //服务器监听3000端口
 app.listen(3000, function() {
   console.log('running on port 3000')

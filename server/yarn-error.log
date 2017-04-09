@@ -1,0 +1,43 @@
+Arguments: 
+  D:\Program Files\nodejs\node.exe D:\Program Files (x86)\Yarn\bin\yarn.js add nodemon -g
+
+PATH: 
+  C:\Users\ZhaoZhuo\bin;D:\Program Files\Git\mingw64\bin;D:\Program Files\Git\usr\local\bin;D:\Program Files\Git\usr\bin;D:\Program Files\Git\usr\bin;D:\Program Files\Git\mingw64\bin;D:\Program Files\Git\usr\bin;C:\Users\ZhaoZhuo\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0;C:\Users\ZhaoZhuo\AppData\Local\atom\bin;D:\Program Files\MongoDB\Server\3.2\bin;D:\Program Files (x86)\Yarn\bin;D:\Program Files (x86)\Java\jdk1.8.0_121\bin;D:\Program Files\TortoiseSVN\bin;D:\Program Files\nodejs;C:\Users\ZhaoZhuo\AppData\Local\Microsoft\WindowsApps;C:\Users\ZhaoZhuo\AppData\Local\atom\bin;C:\Users\ZhaoZhuo\AppData\Local\Yarn\.bin;D:\Program Files\Sublime Text 3;D:\Program Files\Git\usr\bin;C:\Program Files\MySQL\MySQL Server 5.7\bin;D:\Android\SDK\tools;D:\Android\SDK\platform-tools;D:\Program Files\nodejs;C:\Users\ZhaoZhuo\AppData\Roaming\npm;D:\Program Files\Git\usr\bin\vendor_perl;D:\Program Files\Git\usr\bin\core_perl
+
+Yarn version: 
+  0.18.1
+
+Node version: 
+  6.10.2
+
+Platform: 
+  win32 x64
+
+npm manifest: 
+  {
+    "name": "cars-sales-server",
+    "version": "1.0.0",
+    "description": "毕业设计后台",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "赵卓",
+    "license": "ISC",
+    "dependencies": {
+      "body-parser": "^1.16.1",
+      "cors": "^2.8.1",
+      "express": "^4.14.1",
+      "mongoose": "^4.8.2"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: ENOENT: no such file or directory, open 'E:\Work\毕业设计【汽车销售后台管理系统】\cars-sales-system\server\node_modules\finalhandler\node_modules\debug\.coveralls.yml'
+      at Error (native)

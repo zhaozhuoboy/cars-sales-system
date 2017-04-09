@@ -11,7 +11,7 @@ exports.getNews = function(req,res){
       console.log(err);
     }
   });
-  New.find({}).skip(pageNum*pageSize-pageSize).limit(pageSize).exec(function(err,doc){
+  New.find({}).sort({'_id':-1}).skip(pageNum*pageSize-pageSize).limit(pageSize).exec(function(err,doc){
     //console.log(doc);
     try{
       res.json({news:doc,dataLength:count})
