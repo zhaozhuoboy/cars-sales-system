@@ -2,12 +2,17 @@ import React, { PropTypes } from 'react';
 import { Modal, Button ,Input,Tooltip } from 'antd';
 import axios from 'axios';
 import SiteConfig from '../../config';
+import { Editor } from 'react-draft-wysiwyg';
+import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import { convertToRaw } from 'draft-js';
+import draftToHtml from 'draftjs-to-html';
 
 const addCar = React.createClass({
   getInitialState() {
     return {
       ModalText: 'Content of the modal dialog',
-      visible: false
+      visible: false,
+      editorState:[]
     };
   },
   showModal() {
@@ -20,6 +25,8 @@ const addCar = React.createClass({
     pics[0]=this.refs.carPic1.refs.input.value;
     pics[1]=this.refs.carPic2.refs.input.value;
     pics[2]=this.refs.carPic3.refs.input.value;
+    let editorContent = this.state.editorState[0];
+    let contentHtml = draftToHtml(convertToRaw(editorContent.getCurrentContent()))
     let newCar={
       name:sessionStorage.getItem('name'),
       userName:sessionStorage.getItem('user'),
@@ -27,7 +34,7 @@ const addCar = React.createClass({
       carPrice:this.refs.carPrice.refs.input.value,
       carStock:this.refs.carStock.refs.input.value,
       carPics:pics,
-      carDescription:this.refs.carDescription.value
+      carDescription:contentHtml
     }
     console.log(newCar);
     axios.post(`${SiteConfig.host}/addcar`,newCar)
@@ -37,6 +44,7 @@ const addCar = React.createClass({
               this.setState({
                 visible: false,
                 confirmLoading: false,
+                editorState:[]
               });
             }, 600);
             this.props.loadnew();
@@ -53,7 +61,6 @@ const addCar = React.createClass({
     this.refs.carPic1.refs.input.value='';
     this.refs.carPic2.refs.input.value='';
     this.refs.carPic3.refs.input.value='';
-    this.refs.carDescription.value='';
 
   },
   handleCancel() {//点击取消按钮
@@ -66,11 +73,20 @@ const addCar = React.createClass({
       value: e.target.value,
     });
   },
+  onEditorStateChange (index, editorContent) {
+    let editorState = this.state.editorState;
+    editorState[index] = editorContent;
+    editorState = [...editorState];
+    this.setState({
+      editorState,
+    });
+  },
   render() {
     const styles={
       p:{
-        margin:"15px auto",
-        width:"60%"
+        float:'left',
+        margin:"8px 10px",
+        width:"48%"
       },
       textarea:{
         width:"100%",
@@ -79,13 +95,21 @@ const addCar = React.createClass({
         height:"130px",
         padding:"4px 10px",
         outline:"none"
+      },editorStyle:{
+        border:'1px solid #F1F1F1',
+        boxSizing: 'border-box',
+        height:"200px",
+        padding:'10px',
+        fontSize:'14px'
       }
     }
+    //const { editorState } = this.state;
     return (
       <div style={{margin:"10px"}}>
         <Button type="primary" onClick={this.showModal}>添加汽车信息</Button>
 
         <Modal title="添加汽车信息"
+          width="80%"
           visible={this.state.visible}
           onOk={this.handleOk}
           okText='保存'
@@ -98,8 +122,19 @@ const addCar = React.createClass({
           <p style={styles.p}><Tooltip placement='right' trigger='focus' title='请输入图片网址'><Input addonBefore="图片2:" ref='carPic2'/></Tooltip></p>
           <p style={styles.p}><Tooltip placement='right' trigger='focus' title='请输入图片网址'><Input addonBefore="图片3:" ref='carPic3'/></Tooltip></p>
           <p style={styles.p}><Tooltip placement='right' trigger='focus' title='库存'><Input addonBefore="库存:" ref='carStock'/></Tooltip></p>
-          <p style={styles.p}><textarea style={styles.textarea}  ref='carDescription'>
-          </textarea></p>
+
+            {/*<textarea style={styles.textarea}  ref='carDescription'></textarea>*/}
+              <Editor
+                 wrapperClassName="wrapper-class"
+                 editorClassName="editor-class"
+                 toolbarClassName="toolbar-class"
+                 wrapperStyle={styles.wrapperStyle}
+                 editorStyle={styles.editorStyle}
+
+                 editorState={this.state.editorState[0]}
+                 onEditorStateChange={this.onEditorStateChange.bind(this,0)}
+                />
+
 
         </Modal>
       </div>
