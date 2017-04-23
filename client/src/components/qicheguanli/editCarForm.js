@@ -142,6 +142,7 @@ class EditYuanGongForm extends React.Component {
     const newxinxi ={
       _id:this.props.post._id,
       name:this.refs.name.value,
+      phone:this.refs.phone.value,
       userName:this.refs.userName.value,
       carName:this.refs.carName.value,
       carPrice:this.refs.carPrice.value,
@@ -176,6 +177,10 @@ class EditYuanGongForm extends React.Component {
           <div style={styles.div}>
             <label style={styles.label}>用户名</label>
             <input disabled style={styles.input} ref='userName' defaultValue={this.props.post ? this.props.post.userName : ''}/>
+          </div>
+          <div style={styles.div}>
+            <label style={styles.label}>联系电话</label>
+            <input style={styles.input} ref='phone' defaultValue={this.props.post ? this.props.post.phone : ''}/>
           </div>
           <div style={styles.div}>
             <label style={styles.label}>汽车名</label>

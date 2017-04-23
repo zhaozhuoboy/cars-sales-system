@@ -30,6 +30,7 @@ const addCar = React.createClass({
     let newCar={
       name:sessionStorage.getItem('name'),
       userName:sessionStorage.getItem('user'),
+      phone:this.refs.phone.refs.input.value,
       carName:this.refs.carName.refs.input.value,
       carPrice:this.refs.carPrice.refs.input.value,
       carStock:this.refs.carStock.refs.input.value,
@@ -54,7 +55,7 @@ const addCar = React.createClass({
     this.setState({
       confirmLoading: true
     });
-
+    this.refs.phone.refs.input.value='';
     this.refs.carName.refs.input.value='';
     this.refs.carPrice.refs.input.value='';
     this.refs.carStock.refs.input.value='';
@@ -116,6 +117,7 @@ const addCar = React.createClass({
           confirmLoading={this.state.confirmLoading}
           onCancel={this.handleCancel}
         >
+          <p style={styles.p}><Tooltip placement='right' trigger='focus' title='联系电话'><Input addonBefore="联系电话:" ref='phone'/></Tooltip></p>
           <p style={styles.p}><Tooltip placement='right' trigger='focus' title='汽车名'><Input addonBefore="汽车名:" ref='carName'/></Tooltip></p>
           <p style={styles.p}><Tooltip placement='right' trigger='focus' title='价格'><Input addonBefore="价  格:" ref='carPrice'/></Tooltip></p>
           <p style={styles.p}><Tooltip placement='right' trigger='focus' title='请输入图片网址'><Input addonBefore="图片1:" ref='carPic1'/></Tooltip></p>

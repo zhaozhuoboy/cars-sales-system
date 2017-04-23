@@ -6,6 +6,7 @@ var CarsSchema = new Schema(
     name: String,
     userName: String,
     carName: String,
+    phone:String,
     carPrice: String,
     carPics:Array,
     carStock:String,//库存
