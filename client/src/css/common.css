@@ -42,3 +42,5 @@ tbody tr:last-child td{
 }
 
 form a{color:#212121;}
+.uploadImg{width:80%;margin:0 auto;}
+.uploadImg>span{width: 80%;}

@@ -6,6 +6,7 @@ var mongoose = require('mongoose');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 var newsCtrl = require('./controllers/newsCtrl.js');
+var pichdCtrl = require('./controllers/pichdCtrl.js');
 
 // 关闭同源策略
 var cors = require('cors');
@@ -233,7 +234,8 @@ app.get('/getonenews/:_id',function(req,res){
   })
 })
 
-
+//高清图片
+app.post('/addpic',pichdCtrl.addPic);
 
 //服务器监听3000端口
 app.listen(3000, function() {
